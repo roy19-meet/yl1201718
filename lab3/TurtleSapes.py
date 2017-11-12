@@ -18,9 +18,22 @@ import turtle
 #turtle.shape("roy")
 
 
-turtle.shape('apple.gif')
-print(turtle)
+#turtle.addshape('basket.gif')
+#turtle.getshapes()
+#turtle.shape('basket.gif')
+turtle.speed(5000)
+a=1
+for i in range(360):
+	
 
+		turtle.forward(200)
+		turtle.right(100)
+		turtle.forward(100)
+		turtle.right(200)
+		turtle.forward(100)
+		turtle.home()
+		turtle.right(a)
+		a=a+1
 
 
 
