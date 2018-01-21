@@ -13,6 +13,8 @@ class Ball(Turtle):
  		self.color(color)
  		self.goto(x,y)
 
+ 		
+
  	def move(self,screen_width,screen_height):
  		current_x=xcor()
  		new_x=current_x+self.dx
@@ -27,5 +29,3 @@ class Ball(Turtle):
  			self.dx=-self.dx
 		if (ball_top>=screen_height or ball_bottom<= -screen_height):
  			self.dy=-self.dy 
-import time
-from ball.py import Ball 
