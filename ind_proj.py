@@ -11,14 +11,15 @@ class Ball(Turtle):
  		self.shapesize(radius/10)
  		self.radius=radius
  		self.color(color)
+ 		self.pu()
  		self.goto(x,y)
 
  		
 
  	def move(self,screen_width,screen_height):
- 		current_x=xcor()
+ 		current_x=self.xcor()
  		new_x=current_x+self.dx
- 		current_y=ycor()
+ 		current_y=self.ycor()
  		new_y=current_y+self.dy
  		right_side_ball=new_x+self.radius
  		left_side_ball=new_x-self.radius
