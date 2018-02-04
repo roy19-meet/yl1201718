@@ -7,21 +7,25 @@ import math
 turtle.colormode(255)
 turtle.tracer(0)
 turtle.hideturtle()
+newscore=turtle.clone()
+score=0
+turtle.bgpic('fireandwater.gif')
+
 
 RUNNING=True
 SLEEP=0.0077
 SCREEN_WIDTH=turtle.getcanvas().winfo_width()/2
 SCREEN_HEIGHT=turtle.getcanvas().winfo_height()/2
 
-MY_BALL=Ball(0,0,10,10,25,'red')
+MY_BALL=Ball(0,0,0,0,21,'red')
 
-NUMBER_OF_BALLS=5
+NUMBER_OF_BALLS=6
 MINIMUM_BALL_RADIUS=10
-MAXIMUM_BALL_RADIUS=50
-MINIMUM_BALL_DX=-5
-MAXIMUM_BALL_DX=5
-MINIMUM_BALL_DY=-5
-MAXIMUM_BALL_DY=5
+MAXIMUM_BALL_RADIUS=25
+MINIMUM_BALL_DX=-2
+MAXIMUM_BALL_DX=2
+MINIMUM_BALL_DY=-2
+MAXIMUM_BALL_DY=2
 
 BALLS=[]
 for i in range (NUMBER_OF_BALLS):
@@ -77,30 +81,42 @@ def check_all_collisions():
 					ball_B.dy=dy
 					ball_B.color(color)
 					ball_A.radius+=1
+					ball_A.shapesize(ball_A.radius/10)
 				else: 
 					ball_A.goto(x,y)
 					ball_A.radius=radius
-					ball_A.shapesize(ball_B.radius/10)
+					ball_A.shapesize(ball_A.radius/10)
 					ball_A.dx=dx
 					ball_A.dy=dy
 					ball_A.color(color)
 					ball_B.radius+=1
+					ball_B.shapesize(ball_B.radius/10)
+
 
 def check_myball_collision():
+	global score
  	for any_ball in BALLS:
  		if collide(any_ball,MY_BALL):
  			R_a=any_ball.radius
  			R_b=MY_BALL.radius
  			if R_a>R_b:
+ 				turtle.write('LOSER',move=False,align="center",font=('Ariel',48,"normal"))
  				return False
+ 				
  			else:
  				any_ball.goto(x,y)
 				any_ball.radius=radius
-				any_ball.shapesize(an_ball.radius/10)
+				any_ball.shapesize(any_ball.radius/10)
 				any_ball.dx=dx
 				any_ball.dy=dy
 				any_ball.color(color)
  				MY_BALL.radius+=1
+ 				MY_BALL.shapesize(MY_BALL.radius/10)
+ 				score+=1
+ 				newscore.clear()
+ 				newscore.penup()
+ 				newscore.goto(0,SCREEN_HEIGHT-100)
+ 				newscore.write('score:'+str(score),align='center',font=('Ariel',30,'bold'))
  	return True
 
 def movearound(event): #mouse moving
@@ -129,7 +145,9 @@ while RUNNING==True:
 	MY_BALL.move(SCREEN_WIDTH,SCREEN_HEIGHT)
 	print("here6")
 	turtle.getscreen().update()
-	time.sleep(SLEEP)	
+	time.sleep(SLEEP)
+
+		
 
 turtle.mainloop()	
 		
